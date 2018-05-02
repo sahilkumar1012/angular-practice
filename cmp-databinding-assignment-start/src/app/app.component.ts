@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  onGameEvent($event:Event){
+    console.log(event);
+  }
 }
