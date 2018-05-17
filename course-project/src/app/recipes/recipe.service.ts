@@ -2,10 +2,12 @@ import { Recipe } from "./recipe.model";
 import { EventEmitter, Injectable } from "@angular/core";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class RecipeService {
 
+    public recipesChanged = new Subject<Recipe[]>();
     private recipes: Recipe[] = [
         new Recipe('A Test Recipte', 'Description of first test recipe', "https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg",
             [new Ingredient('meat', 1),
@@ -28,4 +30,17 @@ export class RecipeService {
         this.shoppingListService.addIngredients(ingredients);
     }
 
+    addRecipe(recipe:Recipe){
+        this.recipes.push(recipe);
+        this.recipesChanged.next(this.recipes.slice());
+    }
+    updateRecipe(index:number,newRecipe:Recipe){
+        this.recipes[index]=newRecipe;
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    deleteRecipe(index:number){
+        this.recipes.splice(index,1);
+        this.recipesChanged.next(this.recipes.slice());
+    }
 }
