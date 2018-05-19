@@ -14,6 +14,12 @@ export class RecipeService {
             new Ingredient('french-fries', 2)]),
         new Recipe('Another Test Recipte', 'Description of another recipe', "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/1506120378/MR_0917170472.jpg?itok=KPTNrvis",
             [new Ingredient('tomato', 1),
+            new Ingredient('mango', 2)]),
+		new Recipe('A Test Recipte', 'Description of first test recipe', "https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg",
+            [new Ingredient('meat', 1),
+            new Ingredient('french-fries', 2)]),
+        new Recipe('Another Test Recipte', 'Description of another recipe', "http://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/1506120378/MR_0917170472.jpg?itok=KPTNrvis",
+            [new Ingredient('tomato', 1),
             new Ingredient('mango', 2)])
     ];
     constructor(private shoppingListService: ShoppingListService){}
