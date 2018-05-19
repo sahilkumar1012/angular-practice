@@ -16,6 +16,9 @@ export class ServerService {
         .pipe(map(
             (response:Response)=>{
                 const data = response.json();
+                for(let server of data){
+                    server.name = server.name;
+                }
                 return data;
             }
         ));
