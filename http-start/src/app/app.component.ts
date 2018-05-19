@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServerService } from './server.service';
 import { Response } from '@angular/http';
 
@@ -7,8 +7,9 @@ import { Response } from '@angular/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   constructor(private serverService : ServerService){}
+  appName = 'yoyo';
   servers = [
     {
       name: 'Testserver',
@@ -21,6 +22,11 @@ export class AppComponent {
       id: this.generateId()
     }
   ];
+
+  ngOnInit(){
+    console.log('Appname received from firebase');
+    console.log(this.serverService.getAppName());
+  }
   onAddServer(name: string) {
     this.servers.push({
       name: name,

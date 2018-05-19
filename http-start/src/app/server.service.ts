@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import {  Observable, throwError } from "rxjs";
 
 @Injectable()       // as we'll use built in http service
 export class ServerService {
@@ -12,7 +13,7 @@ export class ServerService {
     }
 
     getServers(){
-        return this.http.get('https://udemy-ng-http-96adf.firebaseio.com/data.json')
+        return this.http.get('https://udemy-ng-http-96adf.firebaseio.com/data')
         .pipe(map(
             (response:Response)=>{
                 const data = response.json();
@@ -21,7 +22,24 @@ export class ServerService {
                 }
                 return data;
             }
-        ));
+        ))
+        .pipe(
+            catchError((error:Response)=>{
+                console.log('inside catch block something was wrong' + error);
+                return throwError(error);
+            })
+        );
+    }
+
+    getAppName(){
+        this.http.get('https://udemy-ng-http-96adf.firebaseio.com/appName.json')
+        .pipe(
+            map(
+                (response:Response)=>{
+                    return response.json();
+                }
+            )
+        );
     }
 
 }
