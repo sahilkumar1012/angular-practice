@@ -31,8 +31,8 @@ export class ServerService {
         );
     }
 
-    getAppName(){
-        this.http.get('https://udemy-ng-http-96adf.firebaseio.com/appName.json')
+    getAppName():any{
+        return this.http.get('https://udemy-ng-http-96adf.firebaseio.com/appName.json')
         .pipe(
             map(
                 (response:Response)=>{

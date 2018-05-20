@@ -9,7 +9,7 @@ import { Response } from '@angular/http';
 })
 export class AppComponent implements OnInit{
   constructor(private serverService : ServerService){}
-  appName = 'yoyo';
+  appName = this.serverService.getAppName();
   servers = [
     {
       name: 'Testserver',
